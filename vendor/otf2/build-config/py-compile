@@ -136,7 +136,7 @@ else
 fi
 
 $PYTHON -c "
-import sys, os, py_compile, imp
+import sys, os, py_compile, importlib
 
 files = '''$files'''
 silent = $silent
@@ -156,8 +156,8 @@ for file in files.split():
         sys.stdout.flush()
     else:
         sys.stdout.write('  PYTHON   {}{}{}\n'.format(blu, filepath + 'c', std))
-    if hasattr(imp, 'get_tag'):
-        py_compile.compile(filepath, imp.cache_from_source(filepath), path)
+    if sys.implementation.cache_tag.startswith('cpython'):
+        py_compile.compile(filepath, importlib.util.cache_from_source(filepath), path)
     else:
         py_compile.compile(filepath, filepath + 'c', path)
 if not silent:
@@ -165,7 +165,7 @@ if not silent:
 
 # this will fail for python < 1.5, but that doesn't matter ...
 $PYTHON -O -c "
-import sys, os, py_compile, imp
+import sys, os, py_compile, importlib
 
 # pypy does not use .pyo optimization
 if hasattr(sys, 'pypy_translation_info'):
@@ -189,8 +189,8 @@ for file in files.split():
         sys.stdout.flush()
     else:
         sys.stdout.write('  PYTHON   {}{}{}\n'.format(blu, filepath + 'o', std))
-    if hasattr(imp, 'get_tag'):
-        py_compile.compile(filepath, imp.cache_from_source(filepath, False), path)
+    if sys.implementation.cache_tag.startswith('cpython'):
+        py_compile.compile(filepath, importlib.util.cache_from_source(filepath, False), path)
     else:
         py_compile.compile(filepath, filepath + 'o', path)
 if not silent:
