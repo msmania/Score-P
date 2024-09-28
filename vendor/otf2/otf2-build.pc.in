@@ -1,0 +1,16 @@
+prefix=@PREFIX@
+exec_prefix=${prefix}
+libdir=@LIBDIR@
+includedir=@INCLUDEDIR@
+otf2_libs=-L${libdir} -lotf2 @OTF2_TIMER_LIB@
+otf2_sionlib_libs=@OTF2_SIONLIB_LDFLAGS@ @OTF2_SIONLIB_LIBS@
+
+Name: otf2-@AFS_PACKAGE_BUILD_name@
+Description: Open Trace Format 2 (@AFS_PACKAGE_BUILD_name@)
+Version: @PACKAGE_VERSION@
+URL: https://score-p.org
+Requires:
+@USER_BUILD_SHARED_LIBRARIES_TRUE@Libs: ${otf2_libs}
+@USER_BUILD_SHARED_LIBRARIES_TRUE@Libs.private: ${otf2_sionlib_libs}
+@USER_BUILD_SHARED_LIBRARIES_FALSE@Libs: ${otf2_libs} ${otf2_sionlib_libs}
+Cflags: -I${includedir}

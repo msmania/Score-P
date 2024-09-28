@@ -1,0 +1,9 @@
+67960158cb1237654449ac87de2620f5
+b3fa0c1d0662b4a7c3d8565fdd92bba6
+../src/OTF2_DefWriter_inc.c
+OTF2_DefWriter_inc.tmpl.c
+../share/otf2/otf2.types
+../share/otf2/otf2.enums
+../share/otf2/otf2.defs
+../share/otf2/otf2.events
+../share/otf2/otf2.snaps

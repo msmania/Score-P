@@ -1,0 +1,19 @@
+Google C++ Testing Framework
+============================
+
+This directory contains a stripped-down copy of the Google C++ Testing
+Framework, based on the `release-1.11.0` tag.  See the `LICENSE` file
+for license details.  More details, documentation, and the full source
+code can be found at
+
+    https://github.com/google/googletest
+
+
+Extensions
+==========
+
+Besides the source code of the Google C++ Testing Framework itself,
+this directory also includes some custom code in the `extensions`
+subdirectory -- mainly to support our GNU Autotools-based build system
+and to address HPC-specific needs.  See the `extensions/COPYING` file
+for license details.

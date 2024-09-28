@@ -1,0 +1,78 @@
+#!/bin/bash
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2022                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+CUBES_DIR="@abs_srcdir@"
+TEMPLATE_CUBE="$CUBES_DIR/template.cube"
+TEMPLATE_MISC_DATA="$CUBES_DIR/template.data"
+TEMPLATE_GPU_DATA1="$CUBES_DIR/template_gpu_tree.data"
+TEMPLATE_GPU_DATA2="$CUBES_DIR/template_gpu_data.data"
+TEMPLATE_NAMES_DATA="$CUBES_DIR/template_corrected_names.data"
+
+echo "######################################################"
+echo "#Run test 2 : Check the cube creation by C++ library. "
+echo "#"
+echo "#"
+echo "######################################################"
+mkdir -p tests
+cd tests
+echo  "=====> Creation of the own example3.cubex example cube..."
+../cube_self_test2_ext
+echo  "=====> Creation of the example cube..."
+../cube_self_test2
+result1=$?
+echo  "=====> Creation of the example cube with advanced system tree..."
+../cube_self_test2_1
+result1_1=$?
+echo  "=====> Creation of the example cube with GPU and metrics location groups..."
+../cube_self_test4_gpu_metrics
+result4_1=$?
+echo "=====> Compare gpu tree with stored result"
+../cube_dump -w systemtree example_gpu_metrics.cubex > gpu_metrics.output
+result4_2=$?
+diff gpu_metrics.output $TEMPLATE_GPU_DATA1
+result4_3=$?
+echo "=====> Compare gpu tree with stored result"
+../cube_dump -m all -z incl -s gnuplot example_gpu_metrics.cubex > gpu_metrics_data.output
+result4_4=$?
+diff gpu_metrics_data.output $TEMPLATE_GPU_DATA2
+result4_5=$?
+echo "=====> Compare result with saved template..."
+../cube_cmp example2.cubex $TEMPLATE_CUBE
+result2=$?
+cp example2_2.cubex example2_2_compare.cubex
+echo  "=====>  Compare result with advanced system tree with itself..."
+../cube_cmp example2_2.cubex example2_2_compare.cubex
+result2_1=$?
+
+echo  "=====> Creation of the example of unique metric's name correction..."
+../cube_self_test_metric_names > corrected_names
+result5_1=$?
+diff corrected_names $TEMPLATE_NAMES_DATA
+result5_2=$?
+
+
+
+echo  "=====> Test cube report as a container..."
+tar -xf example2.cubex "Die Ameisen"
+diff "Die Ameisen" $TEMPLATE_MISC_DATA > run_test_2.diff
+result3=$?
+cd ..
+if [[ $result1 -ne 0 ||  $result1_1 -ne 0 || $result2 -ne 0 || $result2_1 -ne 0 || $result3 -ne 0 || $result4_1 -ne 0 || $result4_2 -ne 0 || $result4_3 -ne 0 || $result4_4 -ne 0 || $result4_5 -ne 0 || $result5_1 -ne 0 || $result5_2 -ne 0 ]];
+then
+echo "Test FAILED. Inspect output above for more details."
+exit -1
+fi

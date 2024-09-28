@@ -1,0 +1,323 @@
+/* ../src/config-frontend.h.in.  Generated from configure.ac by autoheader.  */
+
+/* Define if building universal (internal helper macro) */
+#undef AC_APPLE_UNIVERSAL_BUILD
+
+/* Name of the sub-build. */
+#undef AFS_PACKAGE_BUILD
+
+/* Symbol name of the sub-build in upper case. */
+#undef AFS_PACKAGE_BUILD_NAME
+
+/* Symbol name of the sub-build in lower case. */
+#undef AFS_PACKAGE_BUILD_name
+
+/* The package name usable as a symbol in upper case. */
+#undef AFS_PACKAGE_NAME
+
+/* Relative path to the top-level source directory. */
+#undef AFS_PACKAGE_SRCDIR
+
+/* The package name usable as a symbol in lower case. */
+#undef AFS_PACKAGE_name
+
+/* If the compiler supports inline assembly define it to that keyword here */
+#undef ASM_INLINE
+
+/* Try to use colorful output for tests. */
+#undef CUTEST_USE_COLOR
+
+/* define if the compiler supports basic C99 syntax */
+#undef HAVE_C99
+
+/* Instruction set aarch64 */
+#undef HAVE_CPU_INSTRUCTION_SET_AARCH64
+
+/* Instruction set ppc64 */
+#undef HAVE_CPU_INSTRUCTION_SET_PPC64
+
+/* Instruction set x86_64 */
+#undef HAVE_CPU_INSTRUCTION_SET_X86_64
+
+/* define if the compiler supports basic C++11 syntax */
+#undef HAVE_CXX11
+
+/* Define to 1 if you have the declaration of `closedir' in C++, and to 0 if
+   you don't. */
+#undef HAVE_CXX_DECL_POSIX_CLOSEDIR
+
+/* Define to 1 if you have the declaration of `opendir' in C++, and to 0 if
+   you don't. */
+#undef HAVE_CXX_DECL_POSIX_OPENDIR
+
+/* Define to 1 if you have the declaration of `pclose' in C++, and to 0 if you
+   don't. */
+#undef HAVE_CXX_DECL_POSIX_PCLOSE
+
+/* Define to 1 if you have the declaration of `popen' in C++, and to 0 if you
+   don't. */
+#undef HAVE_CXX_DECL_POSIX_POPEN
+
+/* Define to 1 if you have the declaration of `readdir' in C++, and to 0 if
+   you don't. */
+#undef HAVE_CXX_DECL_POSIX_READDIR
+
+/* Define to 1 if you have the declaration of `getcwd' in C, and to 0 if you
+   don't. */
+#undef HAVE_C_DECL_POSIX_GETCWD
+
+/* Define to 1 if you have the declaration of `gethostname' in C, and to 0 if
+   you don't. */
+#undef HAVE_C_DECL_POSIX_GETHOSTNAME
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Defined if MPI support is available. */
+#undef HAVE_FRONTEND_MPI_SUPPORT
+
+/* Defined if SHMEM support is available. */
+#undef HAVE_FRONTEND_SHMEM_SUPPORT
+
+/* Defined if thread local storage support is available. */
+#undef HAVE_FRONTEND_THREAD_LOCAL_STORAGE
+
+/* Define to 1 if the compiler supports gcc atomic builtins. */
+#undef HAVE_GCC_ATOMIC_BUILTINS
+
+/* Define to 1 if casting is needed to use gcc atomic builtins. */
+#undef HAVE_GCC_ATOMIC_BUILTINS_NEEDS_CASTS
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Defined to 1 if native MIC build exists */
+#undef HAVE_MIC_SUPPORT
+
+/* Defined if MPI support is available. */
+#undef HAVE_MPI_SUPPORT
+
+/* Set if we are building for the AIX platform */
+#undef HAVE_PLATFORM_AIX
+
+/* Set if we are building for the ALTIX platform */
+#undef HAVE_PLATFORM_ALTIX
+
+/* Set if we are building for the BG/L platform */
+#undef HAVE_PLATFORM_BGL
+
+/* Set if we are building for the BG/P platform */
+#undef HAVE_PLATFORM_BGP
+
+/* Set if we are building for the BG/Q platform */
+#undef HAVE_PLATFORM_BGQ
+
+/* Set if we are building for the Cray platform */
+#undef HAVE_PLATFORM_CRAY
+
+/* Set if we are building for an otherwise unspecified Cray platform */
+#undef HAVE_PLATFORM_CRAYGENERIC
+
+/* Set if we are building for the Cray XC platform */
+#undef HAVE_PLATFORM_CRAYXC
+
+/* Set if we are building for the Cray XE platform */
+#undef HAVE_PLATFORM_CRAYXE
+
+/* Set if we are building for the Cray XK platform */
+#undef HAVE_PLATFORM_CRAYXK
+
+/* Set if we are building for the Cray XT platform */
+#undef HAVE_PLATFORM_CRAYXT
+
+/* Set if we are building for the FX10 platform */
+#undef HAVE_PLATFORM_FX10
+
+/* Set if we are building for the FX100 platform */
+#undef HAVE_PLATFORM_FX100
+
+/* Set if we are building for the K platform */
+#undef HAVE_PLATFORM_K
+
+/* Set if we are building for the Linux platform */
+#undef HAVE_PLATFORM_LINUX
+
+/* Set if we are building for the macOS platform */
+#undef HAVE_PLATFORM_MAC
+
+/* Set if we are building for the Intel MIC platform */
+#undef HAVE_PLATFORM_MIC
+
+/* Set if we are building for the MinGW platform */
+#undef HAVE_PLATFORM_MINGW
+
+/* Set if we are building for the Solaris platform */
+#undef HAVE_PLATFORM_SOLARIS
+
+/* Define to 1 if `closedir' function can be linked */
+#undef HAVE_POSIX_CLOSEDIR
+
+/* Define to 1 if directory entries can be read via POSIX functions */
+#undef HAVE_POSIX_DIRENTRY_FUNCS
+
+/* Define to 1 if `getcwd' function can be linked */
+#undef HAVE_POSIX_GETCWD
+
+/* Define to 1 if `gethostname' function can be linked */
+#undef HAVE_POSIX_GETHOSTNAME
+
+/* Define to 1 if `opendir' function can be linked */
+#undef HAVE_POSIX_OPENDIR
+
+/* Define to 1 if `pclose' function can be linked */
+#undef HAVE_POSIX_PCLOSE
+
+/* Define to 1 if POSIX pipes are supported */
+#undef HAVE_POSIX_PIPES
+
+/* Define to 1 if `popen' function can be linked */
+#undef HAVE_POSIX_POPEN
+
+/* Define to 1 if `readdir' function can be linked */
+#undef HAVE_POSIX_READDIR
+
+/* Defined to 1 if oneAPI compiler is used */
+#undef HAVE_SCOREP_COMPILER_CC_INTEL_ONEAPI
+
+/* Defined to 1 if oneAPI compiler is used */
+#undef HAVE_SCOREP_COMPILER_CXX_INTEL_ONEAPI
+
+/* Defined to 1 if oneAPI compiler is used */
+#undef HAVE_SCOREP_COMPILER_FC_INTEL_ONEAPI
+
+/* Define to 1 to enable additional debug output and checks. */
+#undef HAVE_SCOREP_DEBUG
+
+/* Define to 1 to disable assertions (like NDEBUG). */
+#undef HAVE_SCOREP_NO_ASSERT
+
+/* Define to 1 if PDT support available */
+#undef HAVE_SCOREP_PDT
+
+/* If set, time measurements for Score-P's SCOREP_InitMeasurement() and
+   scorep_finalize() functions are performed. */
+#undef HAVE_SCOREP_RUNTIME_MANAGEMENT_TIMINGS
+
+/* Defined if SHMEM support is available. */
+#undef HAVE_SHMEM_SUPPORT
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Defined if thread local storage support is available. */
+#undef HAVE_THREAD_LOCAL_STORAGE
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
+#undef LT_OBJDIR
+
+/* Define to 1 if your C compiler doesn't accept -c and -o together. */
+#undef NO_MINUS_C_MINUS_O
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* The #include argument used to include this packages error codes header. */
+#undef PACKAGE_ERROR_CODES_HEADER
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* Revision of Score-P */
+#undef SCOREP_COMPONENT_REVISION
+
+/* Default name of the machine Score-P is running on. */
+#undef SCOREP_DEFAULT_MACHINE_NAME
+
+/* Defined if we are working from git. */
+#undef SCOREP_IN_DEVELOPEMENT
+
+/* Defined if we are working from a make dist generated tarball. */
+#undef SCOREP_IN_PRODUCTION
+
+/* Name of the platform Score-P was built on. */
+#undef SCOREP_PLATFORM_NAME
+
+/* Defined if we are building shared libraries. See also SCOREP_STATIC_BUILD
+   */
+#undef SCOREP_SHARED_BUILD
+
+/* Defined if we are building static libraries. See also SCOREP_SHARED_BUILD
+   */
+#undef SCOREP_STATIC_BUILD
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Variable attribute to select a specific TLS model. */
+#undef THREAD_LOCAL_STORAGE_MODEL
+
+/* Set specifier to mark a variable as thread-local storage (TLS) */
+#undef THREAD_LOCAL_STORAGE_SPECIFIER
+
+/* Version number of package */
+#undef VERSION
+
+/* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
+   significant byte first (like Motorola and SPARC, unlike Intel). */
+#if defined AC_APPLE_UNIVERSAL_BUILD
+# if defined __BIG_ENDIAN__
+#  define WORDS_BIGENDIAN 1
+# endif
+#else
+# ifndef WORDS_BIGENDIAN
+#  undef WORDS_BIGENDIAN
+# endif
+#endif
+
+/* Define to 1 if needed to make fixed-width integer constant macros available
+   in C++ */
+#undef __STDC_CONSTANT_MACROS
+
+/* Define to 1 if needed to make fixed-width integer format macros available
+   in C++ */
+#undef __STDC_FORMAT_MACROS
+
+/* Define to 1 if needed to make fixed-width integer limit macros available in
+   C++ */
+#undef __STDC_LIMIT_MACROS

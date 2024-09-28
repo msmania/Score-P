@@ -1,0 +1,81 @@
+## -*- mode: makefile -*-
+
+## @configure_input@ from test/instrumenter_checks/memory/Makefile.in
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2014,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2016,
+## Technische Universitaet Dresden, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+
+CC       = @CC@
+CFLAGS   =
+
+CXX      = @CXX@
+CXXFLAGS =
+
+TOOLS_BINDIR               = @BINDIR@
+INSTRUMENTERCHECK_SRCDIR   = @abs_top_srcdir@/../test/instrumenter_checks
+SRCDIR                     = $(INSTRUMENTERCHECK_SRCDIR)/memory
+INSTRUMENTERCHECK_BUILDDIR = @abs_top_builddir@/../installcheck/instrumenter_checks
+BINDIR                     = $(INSTRUMENTERCHECK_BUILDDIR)/bin
+TOOLS                      = $(TOOLS_BINDIR)/scorep $(TOOLS_BINDIR)/scorep-config $(INSTRUMENTERCHECK_BUILDDIR)/check-instrumentation.sh
+PREP                       = "$(TOOLS_BINDIR)/scorep"
+
+scorep__tty_colors = \
+red=; grn=; blu=; mgn=; std=; \
+test "X$(AM_COLOR_TESTS)" != Xno \
+&& test "X$$TERM" != Xdumb \
+&& { test "X$(AM_COLOR_TESTS)" = Xalways || test -t 1 2>/dev/null; } \
+&& { \
+  red='[0;31m'; \
+  grn='[0;32m'; \
+  blu='[1;34m'; \
+  mgn='[0;35m'; \
+  std='[m'; \
+}
+
+SCOREP_V_CC = $(scorep__v_cc_$(V))
+scorep__v_cc_ = $(scorep__v_cc_0)
+scorep__v_cc_0 = @$(scorep__tty_colors); echo "  SCOREP CC    $${blu}$@$$std";
+
+SCOREP_V_CXX = $(scorep__v_cxx_$(V))
+scorep__v_cxx_ = $(scorep__v_cxx_0)
+scorep__v_cxx_0 = @$(scorep__tty_colors); echo "  SCOREP CXX  $${blu}$@$$std";
+
+SCOREP_V_verbose = $(scorep__v_verbose_$(V))
+scorep__v_verbose_ =
+scorep__v_verbose_1 = --verbose
+
+
+TESTS = \
+    $(BINDIR)/malloc-cc \
+    $(BINDIR)/calloc-cc \
+    $(BINDIR)/realloc-cc \
+    $(BINDIR)/new-cxx \
+    $(BINDIR)/new_array-cxx
+
+all: $(TESTS)
+
+
+$(BINDIR)/%: $(SRCDIR)/%.c $(TOOLS)
+	@mkdir -p $(BINDIR)
+	$(SCOREP_V_CC)$(PREP) $(SCOREP_V_verbose) $(CC) $(CFLAGS) -o $@ $<
+	@$(INSTRUMENTERCHECK_BUILDDIR)/check-instrumentation.sh serial $@ $(SCOREP_V_verbose)
+
+$(BINDIR)/%: $(SRCDIR)/%.cpp $(TOOLS)
+	@mkdir -p $(BINDIR)
+	$(SCOREP_V_CXX)$(PREP) $(SCOREP_V_verbose) $(CXX) $(CXXFLAGS) -o $@ $<
+	@$(INSTRUMENTERCHECK_BUILDDIR)/check-instrumentation.sh serial $@ $(SCOREP_V_verbose)
+
+clean:
+	@rm -f $(TESTS)

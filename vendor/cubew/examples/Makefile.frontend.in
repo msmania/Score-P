@@ -1,0 +1,82 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2023                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+#------------------------------------------------------------------------------
+# General Settings
+#------------------------------------------------------------------------------
+
+prefix=@prefix@
+datarootdir = @datarootdir@
+datadir = @datadir@
+
+CUBE_CONFIG = $(prefix)/bin/cubew-config
+
+CFLAGS = $(shell $(CUBE_CONFIG) --target frontend --cflags)
+CLDFLAGS := $(shell $(CUBE_CONFIG) --target frontend --ldflags) $(shell $(CUBE_CONFIG) --target frontend --libs)
+
+
+
+CC = @CC@
+CXX = @CXX@
+
+
+
+.SUFFIXES: .c .o .cpp .c.exe .cpp.exe .c.o .cpp.o .java .java.class .mpi.c .mpi.cpp .mpi.c.exe .mpi.cpp.exe
+.PHONY: all  clean
+
+
+# Object files
+TARGET=
+TARGET+= cubew_example_complex.c.exe \
+	 cubew_example_complex_cpp.cpp.exe \
+	 cubew_example_simple.c.exe \
+	 cubew_example_gpu_metrics.c.exe \
+	 cubew_example_derived.c.exe \
+	 cubew_system_tree_memory_footprint_standard.c.exe \
+	 cubew_system_tree_memory_footprint_optimized.c.exe
+
+
+
+%.c.o : $(datadir)/doc/@PACKAGE@/example/%.c
+	$(CC) -c $< -o $@ $(CFLAGS)
+
+%.c.exe : %.c.o
+	$(CC)  $< -o $@ $(CLDFLAGS)
+
+%.cpp.o : $(datadir)/doc/@PACKAGE@/example/%.cpp
+	$(CXX) -c $< -o $@ $(CFLAGS)
+
+%.cpp.exe : %.cpp.o
+	$(CXX)  $< -o $@ $(CLDFLAGS)
+
+
+#------------------------------------------------------------------------------
+# Rules
+#------------------------------------------------------------------------------
+
+all: $(TARGET)
+	@echo "=============================================================="
+	@echo "'make run' - will run all frontend examples one after other."
+	@echo "=============================================================="
+
+
+run: nompi_script_run
+
+nompi_script_run:
+	@for japp in $(TARGET); do \
+	./$$japp; \
+	done

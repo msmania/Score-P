@@ -1,0 +1,89 @@
+## -*- mode: makefile -*-
+##*************************************************************************##
+##  Copyright (c) 2013-2021                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+## Convenience variable
+GTEST_TOPDIR   = @GTEST_PATH@
+GTEST_CORE_SRC = $(GTEST_TOPDIR)/googletest
+GTEST_EXTS_SRC = $(GTEST_TOPDIR)/extensions
+
+
+## --- Extra distribution files ---------------------------------------------
+
+EXTRA_DIST += \
+    $(GTEST_TOPDIR)/LICENSE \
+    $(GTEST_TOPDIR)/README \
+    $(GTEST_EXTS_SRC)/COPYING
+
+
+## --- Libraries ------------------------------------------------------------
+
+## Google C++ Testing Framework core library
+check_LTLIBRARIES += \
+    libgtest_core.la
+libgtest_core_la_SOURCES = \
+    $(GTEST_CORE_SRC)/include/gtest/gtest.h \
+    $(GTEST_CORE_SRC)/include/gtest/gtest-death-test.h \
+    $(GTEST_CORE_SRC)/include/gtest/gtest-matchers.h \
+    $(GTEST_CORE_SRC)/include/gtest/gtest-message.h \
+    $(GTEST_CORE_SRC)/include/gtest/gtest-param-test.h \
+    $(GTEST_CORE_SRC)/include/gtest/gtest_pred_impl.h \
+    $(GTEST_CORE_SRC)/include/gtest/gtest-printers.h \
+    $(GTEST_CORE_SRC)/include/gtest/gtest_prod.h \
+    $(GTEST_CORE_SRC)/include/gtest/gtest-spi.h \
+    $(GTEST_CORE_SRC)/include/gtest/gtest-test-part.h \
+    $(GTEST_CORE_SRC)/include/gtest/gtest-typed-test.h \
+    $(GTEST_CORE_SRC)/include/gtest/internal/gtest-death-test-internal.h \
+    $(GTEST_CORE_SRC)/include/gtest/internal/gtest-filepath.h \
+    $(GTEST_CORE_SRC)/include/gtest/internal/gtest-internal.h \
+    $(GTEST_CORE_SRC)/include/gtest/internal/gtest-param-util.h \
+    $(GTEST_CORE_SRC)/include/gtest/internal/gtest-port.h \
+    $(GTEST_CORE_SRC)/include/gtest/internal/gtest-port-arch.h \
+    $(GTEST_CORE_SRC)/include/gtest/internal/gtest-string.h \
+    $(GTEST_CORE_SRC)/include/gtest/internal/gtest-type-util.h \
+    $(GTEST_CORE_SRC)/include/gtest/internal/custom/gtest.h \
+    $(GTEST_CORE_SRC)/include/gtest/internal/custom/gtest-port.h \
+    $(GTEST_CORE_SRC)/include/gtest/internal/custom/gtest-printers.h \
+    $(GTEST_CORE_SRC)/include/gtest/internal/custom/README.md \
+    $(GTEST_CORE_SRC)/src/gtest.cc \
+    $(GTEST_CORE_SRC)/src/gtest-death-test.cc \
+    $(GTEST_CORE_SRC)/src/gtest-filepath.cc \
+    $(GTEST_CORE_SRC)/src/gtest-internal-inl.h \
+    $(GTEST_CORE_SRC)/src/gtest-matchers.cc \
+    $(GTEST_CORE_SRC)/src/gtest-port.cc \
+    $(GTEST_CORE_SRC)/src/gtest-printers.cc \
+    $(GTEST_CORE_SRC)/src/gtest-test-part.cc \
+    $(GTEST_CORE_SRC)/src/gtest-typed-test.cc
+libgtest_core_la_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    -I$(srcdir)/$(GTEST_CORE_SRC) \
+    @GTEST_CPPFLAGS@
+libgtest_core_la_CXXFLAGS = \
+    $(AM_CXXFLAGS) \
+    @GTEST_CXXFLAGS@
+
+
+## Google C++ Testing Framework w/ extensions for non-MPI tests
+check_LTLIBRARIES += \
+    libgtest_plain.la
+libgtest_plain_la_SOURCES = \
+    $(GTEST_EXTS_SRC)/src/main.cpp \
+    $(GTEST_EXTS_SRC)/src/tap-helper.h \
+    $(GTEST_EXTS_SRC)/src/tap-helper.cpp \
+    $(GTEST_EXTS_SRC)/src/tap-printer.h \
+    $(GTEST_EXTS_SRC)/src/tap-printer.cpp
+libgtest_plain_la_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    @GTEST_CPPFLAGS@
+libgtest_plain_la_CXXFLAGS = \
+    $(AM_CXXFLAGS) \
+    @GTEST_CXXFLAGS@
+libgtest_plain_la_LIBADD = \
+    libgtest_core.la

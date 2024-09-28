@@ -1,0 +1,99 @@
+
+/**
+
+@page 2_attrs Attribute Conventions
+
+While users have the liberty to select attribute names and formats
+as they like, the OTF2 project suggests certain conventions to enable
+interoperability between various OTF2 producers and consumers. The
+conventions used by Vampir and Score-P are as follows:
+
+@section attr_style General Style and Formatting
+
+Score-P and Vampir have historically used a variety of conventions for
+how attribute names should be formatted and whether they should be namespaced.
+Any OTF2 consumer that intends to read trace files produced by Score-P should
+read the following sections carefully and note the expected names and types of
+attributes. For future development, best practice is as follows:
+
+@li Place attributes in namespaces in the C++ style, with @tt{::} as a separator
+@li Use namespaces to disambiguate overlapping attributes, such as thread IDs assigned by different paradigms
+@li Namespaces may also be used to identify the tool that produced an attribute
+@li If namespaces are used, they should descend from the parent @tt{OTF2::} namespace
+@li Format attributes as @c ALL_CAPS_WITH_UNDERSCORES
+
+As a reminder, tools that read OTF2 should gracefully handle the absence of any
+free-form optional attributes.
+
+@section mem_space_attr Memory Space Attributes
+
+These attributes may be assigned to any data transfer operation.
+They should describe respectively the source and destination of
+the data transfer.
+They refer to an appropriate LocationGroup. In the case of
+unified memory, it should generally be possible to determine whether
+the source and target addresses are actually in main memory
+(corresponding to the location group of the associated CPU process)
+or in accelerator memory (corresponding to the location group of
+the accelerator context).
+
+@li @eref{OTF2_TYPE_LOCATION_GROUP} @p OTF2::MEMORY_SPACE_SOURCE
+@li @eref{OTF2_TYPE_LOCATION_GROUP} @p OTF2::MEMORY_SPACE_DESTINATION
+
+
+@section alloc_attr Memory Allocation Attributes
+
+These attributes are conventionally used to describe memory allocation
+performed within a region, as described by @eref{Enter} and @eref{Leave}
+events. They are conventionally of type @eref{OTF2_TYPE_UINT64}. The Vampir tool
+uses the @c _ADDRESS suffix as a hint to format an attribute in hexadecimal
+style. The usage of these attributes is described with respect to
+standard memory allocation (e.g. @c malloc or @c new).
+
+@li @eref{OTF2_TYPE_UINT64} @p ALLOCATION_SIZE Associated with the entry of an allocation region.
+@li @eref{OTF2_TYPE_UINT64} @p RESULT_ADDRESS Associated with the exit of an allocation region.
+@li @eref{OTF2_TYPE_UINT64} @p DEALLOCATION_SIZE Associated with the entry of a deallocation region.
+@li @eref{OTF2_TYPE_UINT64} @p ARGUMENT_ADDRESS Associated with the entry of a deallocation region. Should typically correspond to a @p RESULT_ADDRESS.
+
+More complex behavior may be modeled with combinations of these attributes: for instance, a @c realloc
+can be represented as a deallocation and allocation, as can a memory move.
+
+@section io_attr I/O Attributes
+
+This attribute is used in I/O recording to describe the starting point
+of an I/O operation in a file. This is conventionally of type @eref{OTF2_TYPE_UINT64}.
+Score-P records this attribute for @eref{IoOperationBegin} events.
+
+@li @eref{OTF2_TYPE_UINT64} @p Offset
+
+@section proc_thread_attr Process and Thread Attributes
+
+These attributes are recorded by Score-P upon process or thread creation,
+as reflected by @eref{ProgramBegin} events for processes and
+@eref{ThreadBegin} or @eref{ThreadTeamBegin} events for threads. These
+are conventionally of type @eref{OTF2_TYPE_UINT64}. Note that
+@eref{ProgramBegin} accepts not only a process ID, but also a thread ID
+for the initial thread. This allows OTF2 users to omit thread creation
+events for the main thread of the program while still recording the
+associated thread ID somewhere. This style is produced by Score-P.
+
+@li @eref{OTF2_TYPE_UINT64} @p ProcessId
+@li @eref{OTF2_TYPE_UINT64} @p ThreadId
+
+Tools writing OTF2 should take particular note of the following:
+
+@li If multiple threading paradigms are recorded, it may be necessary
+to disambiguate which thread IDs map to which paradigm. This may be done
+through namespacing.
+@li If a tool creates thread events (begin/end and/or creation/destruction)
+for the program's main thread, it should either omit the thread ID attribute
+at program begin or ensure that the thread IDs used for creation of the
+program and its main thread are consistent.
+@li The IDs here are optional attributes which may be assigned semantics as
+desired (for example, values assigned by the operating system or the threading
+paradigm). This is distinct from the sequence number which is a mandatory attribute
+on OTF2 thread events. Note that Score-P uses the OS-provided process and thread IDs
+only; it does not consider any higher-level identifiers when writing these
+attributes.
+
+*/

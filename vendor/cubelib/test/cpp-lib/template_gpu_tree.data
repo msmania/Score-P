@@ -1,0 +1,12 @@
+ =============== SYSTEM DIMENSION ============= 
+MSC (id=0, class=, description= )
+  |-Athena (id=1, class=, description= )
+    |-Process 0 (id=0, type=process, rank=0 )
+    |  |-Thread 1 (id=0, type=thread, rank=0)
+    |  |-Thread 2 (id=1, type=thread, rank=1)
+    |-Process 0 (GPU) (id=1, type=accelerator, rank=0 )
+    |  |-Thread 1 (GPU) (id=2, type=accelerator stream, rank=2)
+    |  |-Thread 2 (GPU) (id=3, type=accelerator stream, rank=3)
+    |-Process 0 (METRICS) (id=2, type=metrics, rank=0 )
+      |-Thread 1 (METRICS) (id=4, type=metric, rank=4)
+      |-Thread 2 (METRICS) (id=5, type=metric, rank=5)

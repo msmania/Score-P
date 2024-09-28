@@ -1,0 +1,9 @@
+d9bf7190f94fbd27b686b12e81de974b
+9e224806a6a1e3580f8eb1cc91a0cf05
+../src/python/_otf2/DefReaderCallbacks.py
+_otf2.DefReaderCallbacks.tmpl.py
+../share/otf2/otf2.types
+../share/otf2/otf2.enums
+../share/otf2/otf2.defs
+../share/otf2/otf2.events
+../share/otf2/otf2.snaps

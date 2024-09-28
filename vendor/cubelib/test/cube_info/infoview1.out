@@ -1,0 +1,181 @@
+|            Time | Diff-Calltree
+|       9498880.0 |  * main
+|       9446400.0 |  |  * MAIN__
+|       262400.00 |  |  |  * mpi_setup_
+|       52480.000 |  |  |  |  * MPI_Init_thread
+|       52480.000 |  |  |  |  * MPI_Comm_size
+|       52480.000 |  |  |  |  * MPI_Comm_rank
+|       52480.000 |  |  |  |  * MPI_Comm_split
+|       52480.000 |  |  |  * MPI_Bcast
+|       104960.00 |  |  |  * env_setup_
+|       52480.000 |  |  |  |  * MPI_Bcast
+|       52480.000 |  |  |  * zone_setup_
+|       104960.00 |  |  |  * map_zones_
+|       52480.000 |  |  |  |  * get_comm_index_
+|       52480.000 |  |  |  * zone_starts_
+|       52480.000 |  |  |  * set_constants_
+|       1207040.0 |  |  |  * initialize_
+|       1154560.0 |  |  |  |  * !$omp parallel @initialize.f:28
+|       52480.000 |  |  |  |  |  * !$omp do @initialize.f:31
+|       209920.00 |  |  |  |  |  * !$omp do @initialize.f:50
+|       104960.00 |  |  |  |  |  |  * exact_solution_
+|       52480.000 |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       52480.000 |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       104960.00 |  |  |  |  |  * !$omp do @initialize.f:100
+|       52480.000 |  |  |  |  |  |  * exact_solution_
+|       104960.00 |  |  |  |  |  * !$omp do @initialize.f:119
+|       52480.000 |  |  |  |  |  |  * exact_solution_
+|       104960.00 |  |  |  |  |  * !$omp do @initialize.f:137
+|       52480.000 |  |  |  |  |  |  * exact_solution_
+|       157440.00 |  |  |  |  |  * !$omp do @initialize.f:156
+|       52480.000 |  |  |  |  |  |  * exact_solution_
+|       52480.000 |  |  |  |  |  |  * !$omp implicit barrier @initialize.f:167
+|       104960.00 |  |  |  |  |  * !$omp do @initialize.f:174
+|       52480.000 |  |  |  |  |  |  * exact_solution_
+|       209920.00 |  |  |  |  |  * !$omp do @initialize.f:192
+|       104960.00 |  |  |  |  |  |  * exact_solution_
+|       52480.000 |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       52480.000 |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       52480.000 |  |  |  |  |  * !$omp implicit barrier @initialize.f:204
+|       787200.00 |  |  |  * exact_rhs_
+|       734720.00 |  |  |  |  * !$omp parallel @exact_rhs.f:21
+|       104960.00 |  |  |  |  |  * !$omp do @exact_rhs.f:31
+|       52480.000 |  |  |  |  |  |  * !$omp implicit barrier @exact_rhs.f:41
+|       104960.00 |  |  |  |  |  * !$omp do @exact_rhs.f:46
+|       52480.000 |  |  |  |  |  |  * exact_solution_
+|       209920.00 |  |  |  |  |  * !$omp do @exact_rhs.f:147
+|       52480.000 |  |  |  |  |  |  * exact_solution_
+|       52480.000 |  |  |  |  |  |  * !$omp implicit barrier @exact_rhs.f:242
+|       52480.000 |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       157440.00 |  |  |  |  |  * !$omp do @exact_rhs.f:247
+|       52480.000 |  |  |  |  |  |  * exact_solution_
+|       52480.000 |  |  |  |  |  |  * !$omp implicit barrier @exact_rhs.f:341
+|       52480.000 |  |  |  |  |  * !$omp do @exact_rhs.f:346
+|       52480.000 |  |  |  |  |  * !$omp implicit barrier @exact_rhs.f:357
+|       52480.000 |  |  |  * timer_clear_
+|       1259520.0 |  |  |  * exch_qbc_
+|       472320.00 |  |  |  |  * copy_x_face_
+|       209920.00 |  |  |  |  |  * !$omp parallel @exch_qbc.f:255
+|       157440.00 |  |  |  |  |  |  * !$omp do @exch_qbc.f:255
+|       52480.000 |  |  |  |  |  |  |  * !$omp implicit barrier @exch_qbc.f:264
+|       52480.000 |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       157440.00 |  |  |  |  |  * !$omp parallel @exch_qbc.f:244
+|       104960.00 |  |  |  |  |  |  * !$omp do @exch_qbc.f:244
+|       52480.000 |  |  |  |  |  |  |  * !$omp implicit barrier @exch_qbc.f:253
+|       52480.000 |  |  |  |  |  * TRACE BUFFER FLUSH
+|       524800.00 |  |  |  |  * copy_y_face_
+|       209920.00 |  |  |  |  |  * !$omp parallel @exch_qbc.f:215
+|       104960.00 |  |  |  |  |  |  * !$omp do @exch_qbc.f:215
+|       52480.000 |  |  |  |  |  |  |  * !$omp implicit barrier @exch_qbc.f:224
+|       52480.000 |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       209920.00 |  |  |  |  |  * !$omp parallel @exch_qbc.f:204
+|       157440.00 |  |  |  |  |  |  * !$omp do @exch_qbc.f:204
+|       104960.00 |  |  |  |  |  |  |  * !$omp implicit barrier @exch_qbc.f:213
+|       52480.000 |  |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       52480.000 |  |  |  |  |  * TRACE BUFFER FLUSH
+|       52480.000 |  |  |  |  * MPI_Isend
+|       52480.000 |  |  |  |  * MPI_Irecv
+|       52480.000 |  |  |  |  * MPI_Waitall
+|       52480.000 |  |  |  |  * TRACE BUFFER FLUSH
+|       3201280.0 |  |  |  * adi_
+|       1312000.0 |  |  |  |  * compute_rhs_
+|       1207040.0 |  |  |  |  |  * !$omp parallel @rhs.f:28
+|       52480.000 |  |  |  |  |  |  * !$omp do @rhs.f:37
+|       104960.00 |  |  |  |  |  |  * !$omp do @rhs.f:62
+|       52480.000 |  |  |  |  |  |  |  * !$omp implicit barrier @rhs.f:72
+|       52480.000 |  |  |  |  |  |  * !$omp master @rhs.f:74
+|       52480.000 |  |  |  |  |  |  * !$omp do @rhs.f:80
+|       52480.000 |  |  |  |  |  |  * !$omp master @rhs.f:183
+|       52480.000 |  |  |  |  |  |  * !$omp do @rhs.f:191
+|       52480.000 |  |  |  |  |  |  * !$omp master @rhs.f:293
+|       104960.00 |  |  |  |  |  |  * !$omp do @rhs.f:301
+|       52480.000 |  |  |  |  |  |  |  * !$omp implicit barrier @rhs.f:353
+|       52480.000 |  |  |  |  |  |  * !$omp do @rhs.f:359
+|       52480.000 |  |  |  |  |  |  * !$omp do @rhs.f:372
+|       104960.00 |  |  |  |  |  |  * !$omp do @rhs.f:384
+|       52480.000 |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       52480.000 |  |  |  |  |  |  * !$omp do @rhs.f:400
+|       104960.00 |  |  |  |  |  |  * !$omp do @rhs.f:413
+|       52480.000 |  |  |  |  |  |  |  * !$omp implicit barrier @rhs.f:423
+|       52480.000 |  |  |  |  |  |  * !$omp master @rhs.f:424
+|       104960.00 |  |  |  |  |  |  * !$omp do @rhs.f:428
+|       52480.000 |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       52480.000 |  |  |  |  |  |  * !$omp implicit barrier @rhs.f:439
+|       52480.000 |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       52480.000 |  |  |  |  |  * TRACE BUFFER FLUSH
+|       577280.00 |  |  |  |  * x_solve_
+|       472320.00 |  |  |  |  |  * !$omp parallel @x_solve.f:46
+|       314880.00 |  |  |  |  |  |  * !$omp do @x_solve.f:54
+|       104960.00 |  |  |  |  |  |  |  * lhsinit_
+|       52480.000 |  |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       104960.00 |  |  |  |  |  |  |  * binvrhs_
+|       52480.000 |  |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       52480.000 |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       52480.000 |  |  |  |  |  |  * !$omp implicit barrier @x_solve.f:407
+|       52480.000 |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       52480.000 |  |  |  |  |  * TRACE BUFFER FLUSH
+|       577280.00 |  |  |  |  * y_solve_
+|       524800.00 |  |  |  |  |  * !$omp parallel @y_solve.f:43
+|       367360.00 |  |  |  |  |  |  * !$omp do @y_solve.f:52
+|       104960.00 |  |  |  |  |  |  |  * lhsinit_
+|       52480.000 |  |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       104960.00 |  |  |  |  |  |  |  * binvrhs_
+|       52480.000 |  |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       104960.00 |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       104960.00 |  |  |  |  |  |  * !$omp implicit barrier @y_solve.f:406
+|       52480.000 |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       472320.00 |  |  |  |  * z_solve_
+|       419840.00 |  |  |  |  |  * !$omp parallel @z_solve.f:43
+|       314880.00 |  |  |  |  |  |  * !$omp do @z_solve.f:52
+|       104960.00 |  |  |  |  |  |  |  * lhsinit_
+|       52480.000 |  |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       104960.00 |  |  |  |  |  |  |  * binvrhs_
+|       52480.000 |  |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       52480.000 |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       52480.000 |  |  |  |  |  |  * !$omp implicit barrier @z_solve.f:428
+|       209920.00 |  |  |  |  * add_
+|       157440.00 |  |  |  |  |  * !$omp parallel @add.f:22
+|       104960.00 |  |  |  |  |  |  * !$omp do @add.f:22
+|       52480.000 |  |  |  |  |  |  |  * !$omp implicit barrier @add.f:33
+|       52480.000 |  |  |  * MPI_Barrier
+|       52480.000 |  |  |  * timer_start_
+|       52480.000 |  |  |  * timer_stop_
+|       52480.000 |  |  |  * timer_read_
+|       1836800.0 |  |  |  * verify_
+|       367360.00 |  |  |  |  * error_norm_
+|       314880.00 |  |  |  |  |  * !$omp parallel @error.f:27
+|       157440.00 |  |  |  |  |  |  * !$omp do @error.f:33
+|       104960.00 |  |  |  |  |  |  |  * exact_solution_
+|       52480.000 |  |  |  |  |  |  |  |  * TRACE BUFFER FLUSH
+|       52480.000 |  |  |  |  |  |  * !$omp atomic @error.f:51
+|       52480.000 |  |  |  |  |  |  * !$omp implicit barrier @error.f:54
+|       1102080.0 |  |  |  |  * compute_rhs_
+|       1049600.0 |  |  |  |  |  * !$omp parallel @rhs.f:28
+|       52480.000 |  |  |  |  |  |  * !$omp do @rhs.f:37
+|       104960.00 |  |  |  |  |  |  * !$omp do @rhs.f:62
+|       52480.000 |  |  |  |  |  |  |  * !$omp implicit barrier @rhs.f:72
+|       52480.000 |  |  |  |  |  |  * !$omp master @rhs.f:74
+|       52480.000 |  |  |  |  |  |  * !$omp do @rhs.f:80
+|       52480.000 |  |  |  |  |  |  * !$omp master @rhs.f:183
+|       52480.000 |  |  |  |  |  |  * !$omp do @rhs.f:191
+|       52480.000 |  |  |  |  |  |  * !$omp master @rhs.f:293
+|       104960.00 |  |  |  |  |  |  * !$omp do @rhs.f:301
+|       52480.000 |  |  |  |  |  |  |  * !$omp implicit barrier @rhs.f:353
+|       52480.000 |  |  |  |  |  |  * !$omp do @rhs.f:359
+|       52480.000 |  |  |  |  |  |  * !$omp do @rhs.f:372
+|       52480.000 |  |  |  |  |  |  * !$omp do @rhs.f:384
+|       52480.000 |  |  |  |  |  |  * !$omp do @rhs.f:400
+|       104960.00 |  |  |  |  |  |  * !$omp do @rhs.f:413
+|       52480.000 |  |  |  |  |  |  |  * !$omp implicit barrier @rhs.f:423
+|       52480.000 |  |  |  |  |  |  * !$omp master @rhs.f:424
+|       52480.000 |  |  |  |  |  |  * !$omp do @rhs.f:428
+|       52480.000 |  |  |  |  |  |  * !$omp implicit barrier @rhs.f:439
+|       262400.00 |  |  |  |  * rhs_norm_
+|       209920.00 |  |  |  |  |  * !$omp parallel @error.f:86
+|       52480.000 |  |  |  |  |  |  * !$omp do @error.f:91
+|       52480.000 |  |  |  |  |  |  * !$omp atomic @error.f:104
+|       52480.000 |  |  |  |  |  |  * !$omp implicit barrier @error.f:107
+|       52480.000 |  |  |  |  * MPI_Reduce
+|       52480.000 |  |  |  * MPI_Reduce
+|       52480.000 |  |  |  * print_results_
+|       52480.000 |  |  |  * MPI_Finalize

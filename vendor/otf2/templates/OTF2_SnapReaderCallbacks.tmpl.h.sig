@@ -1,0 +1,9 @@
+c97c5512396e41dd3268d366571ed295
+ec68cbfad38505bfae0bc7e5b27e26be
+../include/otf2/OTF2_SnapReaderCallbacks.h
+OTF2_SnapReaderCallbacks.tmpl.h
+../share/otf2/otf2.types
+../share/otf2/otf2.enums
+../share/otf2/otf2.defs
+../share/otf2/otf2.events
+../share/otf2/otf2.snaps

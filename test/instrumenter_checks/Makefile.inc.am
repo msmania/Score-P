@@ -1,0 +1,112 @@
+## -*- mode: makefile -*-
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2009-2012,
+## RWTH Aachen, Germany
+##
+## Copyright (c) 2009-2012,
+## Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+##
+## Copyright (c) 2009-2012, 2014, 2016,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2009-2012,
+## University of Oregon, Eugene, USA
+##
+## Copyright (c) 2009-2012, 2014,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2009-2012,
+## German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+##
+## Copyright (c) 2009-2012,
+## Technische Universitaet Muenchen, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+## file       test/instrumenter_checks/Makefile.inc.am
+
+INSTRUMENTERCHECK_DIR = $(SRC_ROOT)test/instrumenter_checks
+
+EXTRA_DIST += \
+    $(INSTRUMENTERCHECK_DIR)/Makefile.common_rules_base \
+    $(INSTRUMENTERCHECK_DIR)/Makefile.common_rules \
+    $(INSTRUMENTERCHECK_DIR)/mpi/src/jacobi/cc/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/mpi/src/jacobi/cc/jacobi.c \
+    $(INSTRUMENTERCHECK_DIR)/mpi/src/jacobi/cc/jacobi.h \
+    $(INSTRUMENTERCHECK_DIR)/mpi/src/jacobi/cc/main.c \
+    $(INSTRUMENTERCHECK_DIR)/mpi/src/jacobi/fc/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/mpi/src/jacobi/fc/VariableDef.f90 \
+    $(INSTRUMENTERCHECK_DIR)/mpi/src/jacobi/fc/main.F90 \
+    $(INSTRUMENTERCHECK_DIR)/mpi/src/jacobi/fc/jacobi.F90 \
+    $(INSTRUMENTERCHECK_DIR)/mpi/src/jacobi/cxx/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/mpi/src/jacobi/cxx/main.cpp \
+    $(INSTRUMENTERCHECK_DIR)/mpi/src/jacobi/cxx/jacobi.h \
+    $(INSTRUMENTERCHECK_DIR)/mpi/src/jacobi/cxx/jacobi.cpp \
+    $(INSTRUMENTERCHECK_DIR)/omp/src/jacobi/cc/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/omp/src/jacobi/cc/jacobi.c \
+    $(INSTRUMENTERCHECK_DIR)/omp/src/jacobi/cc/jacobi.h \
+    $(INSTRUMENTERCHECK_DIR)/omp/src/jacobi/cc/main.c \
+    $(INSTRUMENTERCHECK_DIR)/omp/src/jacobi/fc/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/omp/src/jacobi/fc/VariableDef.f90 \
+    $(INSTRUMENTERCHECK_DIR)/omp/src/jacobi/fc/main.F90 \
+    $(INSTRUMENTERCHECK_DIR)/omp/src/jacobi/fc/jacobi.F90 \
+    $(INSTRUMENTERCHECK_DIR)/omp/src/jacobi/cxx/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/omp/src/jacobi/cxx/main.cpp \
+    $(INSTRUMENTERCHECK_DIR)/omp/src/jacobi/cxx/jacobi.h \
+    $(INSTRUMENTERCHECK_DIR)/omp/src/jacobi/cxx/jacobi.cpp \
+    $(INSTRUMENTERCHECK_DIR)/mpi_omp/src/jacobi/cc/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/mpi_omp/src/jacobi/cc/jacobi.c \
+    $(INSTRUMENTERCHECK_DIR)/mpi_omp/src/jacobi/cc/jacobi.h \
+    $(INSTRUMENTERCHECK_DIR)/mpi_omp/src/jacobi/cc/main.c \
+    $(INSTRUMENTERCHECK_DIR)/mpi_omp/src/jacobi/fc/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/mpi_omp/src/jacobi/fc/VariableDef.f90 \
+    $(INSTRUMENTERCHECK_DIR)/mpi_omp/src/jacobi/fc/main.F90 \
+    $(INSTRUMENTERCHECK_DIR)/mpi_omp/src/jacobi/fc/jacobi.F90 \
+    $(INSTRUMENTERCHECK_DIR)/mpi_omp/src/jacobi/cxx/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/mpi_omp/src/jacobi/cxx/main.cpp \
+    $(INSTRUMENTERCHECK_DIR)/mpi_omp/src/jacobi/cxx/jacobi.h \
+    $(INSTRUMENTERCHECK_DIR)/mpi_omp/src/jacobi/cxx/jacobi.cpp \
+    $(INSTRUMENTERCHECK_DIR)/serial/src/jacobi/cc/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/serial/src/jacobi/cc/jacobi.c \
+    $(INSTRUMENTERCHECK_DIR)/serial/src/jacobi/cc/jacobi.h \
+    $(INSTRUMENTERCHECK_DIR)/serial/src/jacobi/cc/main.c \
+    $(INSTRUMENTERCHECK_DIR)/serial/src/jacobi/fc/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/serial/src/jacobi/fc/VariableDef.f90 \
+    $(INSTRUMENTERCHECK_DIR)/serial/src/jacobi/fc/main.F90 \
+    $(INSTRUMENTERCHECK_DIR)/serial/src/jacobi/fc/jacobi.F90 \
+    $(INSTRUMENTERCHECK_DIR)/serial/src/jacobi/cxx/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/serial/src/jacobi/cxx/main.cpp \
+    $(INSTRUMENTERCHECK_DIR)/serial/src/jacobi/cxx/jacobi.h \
+    $(INSTRUMENTERCHECK_DIR)/serial/src/jacobi/cxx/jacobi.cpp \
+    $(INSTRUMENTERCHECK_DIR)/cuda/src/jacobi/cu/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/cuda/src/jacobi/cu/main.cu \
+    $(INSTRUMENTERCHECK_DIR)/cuda/src/jacobi/cu/kernel.cu \
+    $(INSTRUMENTERCHECK_DIR)/cuda/src/jacobi/cu/definitions.cuh \
+    $(INSTRUMENTERCHECK_DIR)/hip/src/jacobi/cxx/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/hip/src/jacobi/cxx/main.cpp \
+    $(INSTRUMENTERCHECK_DIR)/hip/src/jacobi/cxx/kernel.cpp \
+    $(INSTRUMENTERCHECK_DIR)/hip/src/jacobi/cxx/definitions.h \
+    $(INSTRUMENTERCHECK_DIR)/shmem/src/heat/cc/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/shmem/src/heat/cc/heat.c \
+    $(INSTRUMENTERCHECK_DIR)/shmem_omp/src/heat/cc/Makefile \
+    $(INSTRUMENTERCHECK_DIR)/shmem_omp/src/heat/cc/heat.c \
+    $(INSTRUMENTERCHECK_DIR)/create_wait/pthread/dining_philosophers-pthread-cc.c \
+    $(INSTRUMENTERCHECK_DIR)/create_wait/pthread/management_routines-pthread-cc.c \
+    $(INSTRUMENTERCHECK_DIR)/create_wait/pthread/pi_mutex-pthread-cc.c \
+    $(INSTRUMENTERCHECK_DIR)/create_wait/pthread/pi-pthread-cc.c \
+    $(INSTRUMENTERCHECK_DIR)/create_wait/pthread/producer_consumer-pthread-cc.c \
+    $(INSTRUMENTERCHECK_DIR)/create_wait/pthread/synchronization_routines-pthread-cc.c \
+    $(INSTRUMENTERCHECK_DIR)/memory/malloc-cc.c \
+    $(INSTRUMENTERCHECK_DIR)/memory/calloc-cc.c \
+    $(INSTRUMENTERCHECK_DIR)/memory/realloc-cc.c \
+    $(INSTRUMENTERCHECK_DIR)/memory/new-cxx.cpp \
+    $(INSTRUMENTERCHECK_DIR)/memory/new_array-cxx.cpp \
+    $(INSTRUMENTERCHECK_DIR)/io/isoc-io-cc.c \
+    $(INSTRUMENTERCHECK_DIR)/io/isoc-io-cxx.cpp \
+    $(INSTRUMENTERCHECK_DIR)/io/posix-io-cc.c

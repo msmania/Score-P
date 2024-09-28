@@ -1,0 +1,51 @@
+## -*- mode: makefile -*-
+##*************************************************************************##
+##  Copyright (c) 2016-2021                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+## Convenience variable
+GMOCK_CORE_SRC = $(GTEST_TOPDIR)/googlemock
+
+
+## --- Libraries ------------------------------------------------------------
+
+## GoogleTest Mocking Framework core library
+check_LTLIBRARIES += \
+    libgmock_core.la
+libgmock_core_la_SOURCES = \
+    $(GMOCK_CORE_SRC)/include/gmock/gmock.h \
+    $(GMOCK_CORE_SRC)/include/gmock/gmock-actions.h \
+    $(GMOCK_CORE_SRC)/include/gmock/gmock-cardinalities.h \
+    $(GMOCK_CORE_SRC)/include/gmock/gmock-function-mocker.h \
+    $(GMOCK_CORE_SRC)/include/gmock/gmock-matchers.h \
+    $(GMOCK_CORE_SRC)/include/gmock/gmock-more-actions.h \
+    $(GMOCK_CORE_SRC)/include/gmock/gmock-more-matchers.h \
+    $(GMOCK_CORE_SRC)/include/gmock/gmock-nice-strict.h \
+    $(GMOCK_CORE_SRC)/include/gmock/gmock-spec-builders.h \
+    $(GMOCK_CORE_SRC)/include/gmock/internal/gmock-internal-utils.h \
+    $(GMOCK_CORE_SRC)/include/gmock/internal/gmock-port.h \
+    $(GMOCK_CORE_SRC)/include/gmock/internal/gmock-pp.h \
+    $(GMOCK_CORE_SRC)/include/gmock/internal/custom/gmock-generated-actions.h \
+    $(GMOCK_CORE_SRC)/include/gmock/internal/custom/gmock-matchers.h \
+    $(GMOCK_CORE_SRC)/include/gmock/internal/custom/gmock-port.h \
+    $(GMOCK_CORE_SRC)/src/gmock.cc \
+    $(GMOCK_CORE_SRC)/src/gmock-cardinalities.cc \
+    $(GMOCK_CORE_SRC)/src/gmock-internal-utils.cc \
+    $(GMOCK_CORE_SRC)/src/gmock-matchers.cc \
+    $(GMOCK_CORE_SRC)/src/gmock-spec-builders.cc
+libgmock_core_la_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    @GTEST_CPPFLAGS@ \
+    @GMOCK_CPPFLAGS@
+libgmock_core_la_CXXFLAGS = \
+    $(AM_CXXFLAGS) \
+    @GTEST_CXXFLAGS@ \
+    @GMOCK_CXXFLAGS@
+libgmock_core_la_LIBADD = \
+    libgtest_core.la

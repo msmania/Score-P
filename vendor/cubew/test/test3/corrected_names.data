@@ -1,0 +1,5 @@
+Metric 1 "time" vs "time"
+Metric 2 "time_time" vs "time time"
+Metric 3 "time::time_time=0" vs "time::time_time=0"
+Metric 4 "time::time" vs "time::time"
+Metric 5 "time________time" vs "time_?%&!*+~time"

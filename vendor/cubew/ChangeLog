@@ -1,0 +1,53 @@
+Name: Cube Writer C library
+Version: 4.8.2
+    - cubew-config tool reports its git revision properly.
+    - Fixes bug with the storing of the numeric parameters.
+    - Minor fixes.
+
+Version: 4.8.1
+    - Restored creation of the .cubex file as a correct .tar file.
+
+Version: 4.8
+    - Support of Intel oneAPI, NVIDIA HPC SDK and AMD ROCm compilers.
+    - Library doesn't use real user/group names and UIs.
+    - Small improvements in build system.
+
+Version: 4.7
+    - Support for location type CUBE_LOCATION_TYPE_ACCELERATOR_STREAM and location group type CUBE_LOCATION_GROUP_TYPE_ACCELERATOR.
+      CUBE_LOCATION_TYPE_ACCELERATOR_STREAM is an alias for CUBE_LOCATION_TYPE_GPU and has the same numerical value.
+    - Added a call  "bool cube_make_unique_name ( const char *, char *  )" to perform the metric unique name correction to
+      ensure one can use this metric in CubePL expression.
+    - Build shared and static libraries as default.
+    - Minor fixes.
+
+Version: 4.6
+    - Small improvements in build system.
+
+Version: 4.5
+    - Small improvements in documentation.
+
+Version: 4.4.3
+    - Fixed generation of PDF Documentation.
+    - Minor fixes.
+
+Version: 4.4.2
+    - Support for >8Gb files via PAX headers
+
+Version: 4.4.1
+    - Cleaned up public symbols in library.
+    - Minor fixes.
+
+Version: 4.4
+    - One can mark derived metrics as "non convertible" to prevend convertion into data and as "non cacheable" if their value is runtime dependent
+    - Build system improvements
+    - Documentation infrastructure refactoring
+    - Improved detection of zlib
+    - Improved memory handling  (enabled during configure if needed)
+      - Memory tracking
+      - Memory tracing
+    - Bug fixes
+
+Version: 4.3.4
+    - Various bug fixes in library.
+
+Version 4.3.3

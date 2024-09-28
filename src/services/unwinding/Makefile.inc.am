@@ -1,0 +1,76 @@
+## -*- mode: makefile -*-
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2015, 2017,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2021,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+if HAVE_UNWINDING_SUPPORT
+
+noinst_LTLIBRARIES += libscorep_unwinding.la
+libscorep_unwinding_la_SOURCES =   \
+    $(SRC_ROOT)src/services/unwinding/SCOREP_Unwinding.c \
+    $(SRC_ROOT)src/services/unwinding/scorep_unwinding_mgmt.h \
+    $(SRC_ROOT)src/services/unwinding/scorep_unwinding_cpu.c \
+    $(SRC_ROOT)src/services/unwinding/scorep_unwinding_cpu.h \
+    $(SRC_ROOT)src/services/unwinding/scorep_unwinding_gpu.c \
+    $(SRC_ROOT)src/services/unwinding/scorep_unwinding_gpu.h \
+    $(SRC_ROOT)src/services/unwinding/scorep_unwinding_region.c \
+    $(SRC_ROOT)src/services/unwinding/scorep_unwinding_region.h \
+    $(SRC_ROOT)src/services/unwinding/scorep_unwinding_unify.c \
+    $(SRC_ROOT)src/services/unwinding/scorep_unwinding_cct.h \
+    $(SRC_ROOT)src/services/include/SCOREP_Unwinding.h
+
+libscorep_unwinding_la_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    -I$(PUBLIC_INC_DIR) \
+    $(UTILS_CPPFLAGS) \
+    -I$(INC_ROOT)src/measurement/include \
+    -I$(INC_ROOT)src/services/include \
+    -I$(INC_DIR_DEFINITIONS) \
+    -I$(INC_DIR_SUBSTRATES) \
+    $(SCOREP_LIBUNWIND_CPPFLAGS)
+libscorep_unwinding_la_LIBADD = \
+    $(SCOREP_LIBUNWIND_LIBS)
+libscorep_unwinding_la_LDFLAGS = \
+    $(SCOREP_LIBUNWIND_LDFLAG)
+
+libscorep_unwinding_la_CPPFLAGS += \
+    @SCOREP_LIBBFD_CPPFLAGS@
+libscorep_measurement_la_LIBADD += \
+    @SCOREP_LIBBFD_LIBS@
+libscorep_measurement_la_LDFLAGS += \
+    @SCOREP_LIBBFD_LDFLAGS@
+
+FILES_THAT_INCLUDE_LIBUNWIND_H += \
+    $(SRC_ROOT)src/services/unwinding/SCOREP_Unwinding.c \
+    $(SRC_ROOT)src/services/unwinding/scorep_unwinding_cpu.c \
+    $(SRC_ROOT)src/services/unwinding/scorep_unwinding_gpu.c \
+    $(SRC_ROOT)src/services/unwinding/scorep_unwinding_region.c \
+    $(SRC_ROOT)src/services/unwinding/scorep_unwinding_unify.c
+
+else !HAVE_UNWINDING_SUPPORT
+
+noinst_LTLIBRARIES += libscorep_unwinding_mockup.la
+libscorep_unwinding_mockup_la_SOURCES = \
+    $(SRC_ROOT)src/services/unwinding/SCOREP_Unwinding_Mockup.c \
+    $(SRC_ROOT)src/services/include/SCOREP_Unwinding.h
+libscorep_unwinding_mockup_la_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    -I$(PUBLIC_INC_DIR) \
+    $(UTILS_CPPFLAGS) \
+    -I$(INC_ROOT)src/measurement/include \
+    -I$(INC_ROOT)src/services/include \
+    -I$(INC_DIR_DEFINITIONS) \
+    -I$(INC_DIR_SUBSTRATES)
+
+endif !HAVE_UNWINDING_SUPPORT

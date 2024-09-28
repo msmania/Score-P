@@ -1,0 +1,9 @@
+353ec528b843727b6acd4e80e10fd42e
+9b9f0d001b48ddb29e494b449d49fcc6
+../src/otf2_file_types.h
+otf2_file_types.tmpl.h
+../share/otf2/otf2.types
+../share/otf2/otf2.enums
+../share/otf2/otf2.defs
+../share/otf2/otf2.events
+../share/otf2/otf2.snaps

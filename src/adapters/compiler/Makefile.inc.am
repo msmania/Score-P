@@ -1,0 +1,163 @@
+## -*- mode: makefile -*-
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2009-2012,
+## RWTH Aachen University, Germany
+##
+## Copyright (c) 2009-2012,
+## Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+##
+## Copyright (c) 2009-2012, 2014-2015, 2019, 2021,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2009-2012,
+## University of Oregon, Eugene, USA
+##
+## Copyright (c) 2009-2015, 2018-2019, 2021-2022,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2009-2012,
+## German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+##
+## Copyright (c) 2009-2012,
+## Technische Universitaet Muenchen, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+## file src/adapters/compiler/Makefile.inc.am
+
+# --------------------------------------------------------------------
+# runtime management library for the compiler adapter
+
+if HAVE_SCOREP_COMPILER_INSTRUMENTATION
+
+lib_LTLIBRARIES += libscorep_adapter_compiler_mgmt.la
+
+libscorep_adapter_compiler_mgmt_la_SOURCES =                \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_mgmt.c
+
+libscorep_adapter_compiler_mgmt_la_CPPFLAGS = \
+    $(AM_CPPFLAGS)                            \
+    -I$(INC_DIR_MEASUREMENT)                  \
+    -I$(PUBLIC_INC_DIR)                       \
+    $(UTILS_CPPFLAGS)                         \
+    -I$(INC_DIR_DEFINITIONS)
+
+libscorep_adapter_compiler_mgmt_la_LIBADD = \
+    libutils.la
+
+libscorep_adapter_compiler_mgmt_la_LDFLAGS = \
+    $(library_api_version_ldflags)
+
+
+if HAVE_SCOREP_COMPILER_INSTRUMENTATION_NEEDS_ADDR2LINE
+libscorep_adapter_compiler_mgmt_la_CPPFLAGS += \
+    -I$(INC_DIR_SERVICES)
+
+libscorep_adapter_compiler_mgmt_la_LIBADD += \
+    libscorep_addr2line.la
+endif HAVE_SCOREP_COMPILER_INSTRUMENTATION_NEEDS_ADDR2LINE
+
+
+#--- GCC-Plugin specific settings
+if HAVE_SCOREP_COMPILER_INSTRUMENTATION_GCC_PLUGIN
+
+libscorep_adapter_compiler_mgmt_la_SOURCES += \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_gcc_plugin.h \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_gcc_plugin_weak.c
+
+object_DATA += \
+    scorep_compiler_gcc_plugin_begin.$(OBJEXT) \
+    scorep_compiler_gcc_plugin_end.$(OBJEXT)
+
+gccplugin_objects_cppflags = \
+    -I$(PUBLIC_INC_DIR) \
+    -I$(INC_ROOT)src/adapters/compiler \
+    -I$(INC_DIR_MEASUREMENT)
+
+scorep_compiler_gcc_plugin_begin.$(OBJEXT): $(SRC_ROOT)src/adapters/compiler/scorep_compiler_gcc_plugin_begin.c \
+                                            $(SRC_ROOT)src/adapters/compiler/scorep_compiler_gcc_plugin.h
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo $(gccplugin_objects_cppflags) -c -o $@ $<
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) $(gccplugin_objects_cppflags) -c $<
+
+scorep_compiler_gcc_plugin_end.$(OBJEXT): $(SRC_ROOT)src/adapters/compiler/scorep_compiler_gcc_plugin_end.c \
+                                          $(SRC_ROOT)src/adapters/compiler/scorep_compiler_gcc_plugin.h
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo $(gccplugin_objects_cppflags) -c -o $@ $<
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) $(gccplugin_objects_cppflags) -c $<
+
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scorep_compiler_gcc_plugin_begin.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scorep_compiler_gcc_plugin_end.Po@am__quote@
+
+endif HAVE_SCOREP_COMPILER_INSTRUMENTATION_GCC_PLUGIN
+
+
+# --------------------------------------------------------------------
+# event library for the compiler adapter
+
+lib_LTLIBRARIES += libscorep_adapter_compiler_event.la
+
+libscorep_adapter_compiler_event_la_SOURCES = \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_event.c
+
+libscorep_adapter_compiler_event_la_LDFLAGS = \
+    $(library_api_version_ldflags)
+
+libscorep_adapter_compiler_event_la_CPPFLAGS = \
+    $(AM_CPPFLAGS)                             \
+    -I$(INC_DIR_MEASUREMENT)                   \
+    -I$(PUBLIC_INC_DIR)                        \
+    $(UTILS_CPPFLAGS)                          \
+    -I$(INC_DIR_DEFINITIONS)
+
+libscorep_adapter_compiler_event_la_LIBADD = \
+    libscorep_measurement.la
+
+if HAVE_SCOREP_COMPILER_INSTRUMENTATION_NEEDS_ADDR2LINE
+libscorep_adapter_compiler_event_la_CPPFLAGS += \
+    -I$(INC_DIR_SERVICES)                       \
+    -I$(INC_DIR_COMMON_HASH)
+
+libscorep_adapter_compiler_event_la_LIBADD += \
+    libscorep_addr2line.la
+else !HAVE_SCOREP_COMPILER_INSTRUMENTATION_NEEDS_ADDR2LINE
+if HAVE_SCOREP_DEMANGLE
+libscorep_adapter_compiler_event_la_CPPFLAGS += \
+    -I$(INC_DIR_SERVICES)
+
+libscorep_adapter_compiler_event_la_LDFLAGS += \
+    @SCOREP_LIBBFD_LDFLAGS@
+
+libscorep_adapter_compiler_event_la_LIBADD += \
+    @SCOREP_LIBBFD_LIBS@
+endif HAVE_SCOREP_DEMANGLE
+endif !HAVE_SCOREP_COMPILER_INSTRUMENTATION_NEEDS_ADDR2LINE
+
+endif HAVE_SCOREP_COMPILER_INSTRUMENTATION
+
+EXTRA_DIST += \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_demangle.h \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_event_cyg_profile_func.inc.c \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_event_func_addr_hash.inc.c \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_event_func_trace.inc.c \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_event_gcc_plugin.inc.c \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_event_vt_intel.inc.c \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_func_addr_hash.h \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_gcc_plugin_begin.c \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_gcc_plugin_end.c \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_gcc_plugin.h \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_gcc_plugin_weak.c \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_mgmt_func_addr_hash.inc.c \
+    $(SRC_ROOT)src/adapters/compiler/scorep_compiler_mgmt_gcc_plugin.inc.c

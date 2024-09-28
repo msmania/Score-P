@@ -1,0 +1,9 @@
+6aa3b8421be588e31e137593948931d0
+1e2311f9994ce185c486e1e97621b887
+../src/python/otf2/event_writer.py
+otf2.event_writer.tmpl.py
+../share/otf2/otf2.types
+../share/otf2/otf2.enums
+../share/otf2/otf2.defs
+../share/otf2/otf2.events
+../share/otf2/otf2.snaps

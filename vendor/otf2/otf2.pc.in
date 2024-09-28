@@ -1,0 +1,8 @@
+@CROSS_BUILD_FALSE@target=backend
+@CROSS_BUILD_TRUE@target=frontend
+
+Name: otf2
+Description: Open Trace Format 2
+Version: @PACKAGE_VERSION@
+URL: https://score-p.org
+Requires: otf2-${target} = @PACKAGE_VERSION@
